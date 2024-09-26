@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Recommender</title>
+</head>
+<body>
+    <h1>Project Recommender</h1>
+
+    <!-- Input form -->
+    <form method="post" action="{% url 'index' %}">
+        {% csrf_token %}
+        <label for="skills">Skills:</label>
+        <input type="text" id="skills" name="skills" placeholder="e.g. Python, Django, Web Development" required>
+        <br><br>
+
+        <label for="ideas">Project Ideas or Thoughts:</label>
+        <input type="text" id="ideas" name="ideas" placeholder="e.g. Build a personal website" required>
+        <br><br>
+
+        <button type="submit">Generate Project Suggestions</button>
+    </form>
+
+    <!-- Displaying suggestions -->
+    <div id="suggestions" style="margin-top: 20px;">
+        {% if suggestions %}
+            <h2>Project Suggestions:</h2>
+            <ul>
+                {% for suggestion in suggestions %}
+                    <li>{{ suggestion }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
